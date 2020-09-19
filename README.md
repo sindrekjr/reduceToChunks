@@ -12,7 +12,7 @@ Import is basically the same whether you're using CommonJS or ES6.
 ```js
 const reduceToChunks = require('reduce-to-chunks');
 ```
-### ES6
+#### ES6
 ```js
 import reduceToChunks from 'reduce-to-chunks';
 ```
