@@ -1,0 +1,35 @@
+{
+  "name": "reduce-to-chunks",
+  "version": "1.0.0",
+  "description": "Util for reducing arrays to chunks.",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "jest",
+    "clean": "rm -rf dist",
+    "build": "npm run clean && tsc -p tsconfig.json",
+    "prepack": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sindrekjr/reduceToChunks.git"
+  },
+  "keywords": [
+    "array",
+    "reduce",
+    "chunk",
+    "chunks"
+  ],
+  "author": "sindrekjr",
+  "license": "Unlicense",
+  "bugs": {
+    "url": "https://github.com/sindrekjr/reduceToChunks/issues"
+  },
+  "homepage": "https://github.com/sindrekjr/reduceToChunks#readme",
+  "devDependencies": {
+    "@types/jest": "^26.0.14",
+    "@types/node": "^14.11.1",
+    "jest": "^26.4.2",
+    "ts-jest": "^26.3.0",
+    "typescript": "^4.0.3"
+  }
+}
