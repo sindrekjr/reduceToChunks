@@ -7,10 +7,8 @@
     "strict": true,
     "module": "commonjs",
     "moduleResolution": "node",
-    "isolatedModules": true,
-    "noEmit": true,
     "rootDir": "src",
     "outDir": "dist"
   },
-  "exclude": ["dist", "node_modules", "./**/*.spec.ts"]
+  "exclude": ["dist", "node_modules", "**/*.spec.ts"]
 }

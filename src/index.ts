@@ -6,3 +6,5 @@ const chunkBySize = (array: any[], chunkSizes: number): Array<any[]> => array.re
   acc[Math.floor(index / chunkSizes)].push(item);
   return acc;
 }, Array.from(Array(Math.ceil(array.length / chunkSizes)), () => []));
+
+module.exports = reduceToChunks;

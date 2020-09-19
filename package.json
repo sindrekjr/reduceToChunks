@@ -7,7 +7,7 @@
     "test": "jest",
     "eslint": "eslint ./src/**/*.ts",
     "clean": "rm -rf dist",
-    "build": "npm run clean && tsc -p tsconfig.json",
+    "build": "npm run clean && tsc",
     "prepack": "npm run build"
   },
   "repository": {
