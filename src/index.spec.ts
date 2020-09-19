@@ -1,6 +1,6 @@
 import reduceToChunks from './index';
 
-describe('reduceToChunks(array: any[], chunkRule: number)', () => {
+describe('reduceToChunks(array: any[], chunkSize: number)', () => {
   it('should not throw', () => expect(() => reduceToChunks([])).not.toThrow());
 
   it.each([
@@ -34,7 +34,7 @@ describe('reduceToChunks(array: any[], chunkRule: number)', () => {
   });
 });
 
-describe('reduceToChunks(array: any[], chunkRule: Function)', () => {
+describe('reduceToChunks(array: any[], chunkFunc: IndexResolvableFunction)', () => {
   it.each([
     [
       ['One', 'Two', 'Three', 'Four'],
@@ -50,6 +50,11 @@ describe('reduceToChunks(array: any[], chunkRule: Function)', () => {
       ['One', 'Two', 'Three', 'Four'],
       (val: string) => val.length,
       [['One', 'Two'], ['Four'], ['Three']],
+    ],
+    [
+      [1, 3, 5, 11, 7, 32, 15, 101, 16, 17, 91],
+      (val: number) => val % 10,
+      [[1, 11, 101, 91], [32], [3], [5, 15], [16], [7, 17]]
     ],
   ])('should chunk correctly with functions that examine the value', (array, func, expected) => {
     expect(reduceToChunks(array, func)).toEqual(expected);
@@ -86,8 +91,12 @@ describe('reduceToChunks(array: any[], chunkRule: Function)', () => {
       (val: string, index: number) => index * 2,
       [['One'], undefined, ['Two'], undefined, ['Three'], undefined, ['Four']],
     ],
+    [
+      [1, 3, 5, 11, 7, 32, 15, 101, 16, 17, 91],
+      (val: number) => val % 10,
+      [undefined, [1, 11, 101, 91], [32], [3], undefined, [5, 15], [16], [7, 17]]
+    ],
   ])('should keep undefined when preserveEmptyEntries is set to true', (array, func, expected) => {
-    console.log(reduceToChunks(array, func, true));
     expect(reduceToChunks(array, func, true)).toEqual(expected);
   });
 });
