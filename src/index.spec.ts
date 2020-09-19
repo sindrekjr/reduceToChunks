@@ -31,5 +31,5 @@ describe('reduceToChunks(array: any[], rule: number)', () => {
     ],
   ])('should chunk correctly', (array, chunkSize, expected) => {
     expect(reduceToChunks(array, chunkSize)).toEqual(expected);
-  })
+  });
 });
