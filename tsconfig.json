@@ -6,6 +6,7 @@
     "declaration": true,
     "strict": true,
     "module": "commonjs",
+    "esModuleInterop": true,
     "moduleResolution": "node",
     "rootDir": "src",
     "outDir": "dist"
