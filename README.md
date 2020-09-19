@@ -1,4 +1,4 @@
-# reduceToChunks [![npm version](https://badge.fury.io/js/reduceToChunks.svg)](https://badge.fury.io/js/reduceToChunks)
+# reduceToChunks [![npm version](https://badge.fury.io/js/reduce-to-chunks.svg)](https://npmjs.com/package/reduce-to-chunks)
 Util for reducing arrays to chunks.
 
 ## Installation
