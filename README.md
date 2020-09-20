@@ -1,5 +1,5 @@
-# reduceToChunks [![npm version](https://badge.fury.io/js/reduce-to-chunks.svg)](https://npmjs.com/package/reduce-to-chunks)
-Util for reducing arrays to chunks.
+# reduce-to-chunks [![npm version](https://badge.fury.io/js/reduce-to-chunks.svg)](https://npmjs.com/package/reduce-to-chunks)
+A small and powerful utility for reducing arrays to chunks. Any array provided to the function will be returned as an array of arrays ("chunks").
 
 ## Installation
 ```
@@ -7,47 +7,53 @@ $ npm i reduce-to-chunks
 ```
 
 ## Usage
-There are two basic ways to use the function `reduceToChunks`, and both which return an array of arrays.
-### `reduceToChunks(array: any[], chunkSize?: number): Array<any[]>`
-In this example, we provide a number as a second param (or accept the default `1`).
-```js
+#### `reduceToChunks(array, chunkSize = 1)`
+```ts
 const reduceToChunks = require('reduce-to-chunks');
 
 reduceToChunks(['One', 'Two', 'Three', 'Four']);
-// --> [['One'], ['Two'], ['Three'], ['Four']]
+// ^ [['One'], ['Two'], ['Three'], ['Four']]
+
+reduceToChunks(['One', 'Two', 'Three', 'Four'], 2);
+// ^ [['One', 'Two'], ['Three', 'Four']]
 
 reduceToChunks(['One', 'Two', 'Three', 'Four'], 3);
-// --> [['One', 'Two', 'Three'], ['Four']]
+// ^ [['One', 'Two', 'Three'], ['Four']]
 ```
+The examples above show basic usage. An array must always be provided as the first argument, while the second argument defines chunk sizes.
 
-### `reduceToChunks(array: any[], chunkFunc: (item: any, index: number) => number, preserveEmptyEntries?: boolean): Array<any[]>`
-In this usage, we  provide a function as the second param, which must resolve to a number. The number is used to decide which chunk a given item belongs to.
-```js
-const reduceToChunks = require('reduce-to-chunks');
-
+#### `reduceToChunks(array, chunkFunc, preserveEmptyEntries = false)`
+```ts
 reduceToChunks(['One', 'Two', 'Three', 'Four'], val => val.length);
-// --> [['One', 'Two'], ['Four'], ['Three']]
+// ^ [['One', 'Two'], ['Four'], ['Three']]
 
 reduceToChunks(['One', 'Two', 'Three', 'Four'], (val, index) => index / 2);
-// --> [['One'], ['Three']]
+// ^ [['One'], ['Three']]
 ```
+When passing a function as the second argument, that function must return a number. This number is used to decide which chunk a given item belongs to, which allows for some very powerful grouping logic while still writing nice and concise code.
 
-Note that when passing functions, some indices may be unused and result in undefined array entries, but these entries are removed by default. To retain empty entries, provide `true` as the third param when using `reduceToChunks`.
-```js
-reduceToChunks(['One', 'Two', 'Three', 'Four'], (val, index) => index * 2, true);
-// --> [['One'], undefined, ['Two'], undefined, ['Three'], undefined, ['Four']]
+Note that when passing functions, some indices may be unused and result in undefined array entries, but these entries are removed by default. To keep undefined entries, provide `true` as the third argument when using `reduceToChunks`.
+```ts
+reduceToChunks(
+  ['One', 'Two', 'Three', 'Four'],
+  (val, index) => index * 2, 
+  true
+);
+// ^ [['One'], undefined, ['Two'], undefined, ['Three'], undefined, ['Four']]
 ```
+As seen above, when the given function multiplies each item's index by 2, every odd index is undefined in the resulting array.
 
 ## Import
-Importing is basically the same whether you're using CommonJS or ES6. 
-#### CJS
-```js
-const reduceToChunks = require('reduce-to-chunks');
+Importing is basically the same whether you're using CommonJS or ES Modules.
+```ts
+const reduceToChunks = require('reduce-to-chunks'); // cjs
+import reduceToChunks from 'reduce-to-chunks'; // es
 ```
-#### ES6
-```js
-import reduceToChunks from 'reduce-to-chunks';
-```
+
+## Features
+- Written in [TypeScript](https://www.typescriptlang.org/).
+- Minimally scoped.
+- No dependencies.
 
 ## Contributing
 Submitted issues or pull requests are welcome.
