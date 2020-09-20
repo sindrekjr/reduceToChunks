@@ -56,6 +56,28 @@ describe('reduceToChunks(array: any[], chunkFunc: IndexResolvableFunction)', () 
       (val: number) => val % 10,
       [[1, 11, 101, 91], [32], [3], [5, 15], [16], [7, 17]]
     ],
+    [
+      [
+        { entry: 'apple', type: 'fruit' },
+        { entry: 'orange', type: 'fruit' },
+        { entry: 'pepper', type: 'spice'},
+        { entry: 'celery', type: 'vegetable' },
+        { entry: 'cabbage', type: 'vegetable' },
+      ],
+      (val: { entry: string, type: string }) => {
+        if (val.type === 'fruit') return 0;
+        if (val.type === 'spice') return 1;
+      },
+      [
+        [
+          { entry: 'apple', type: 'fruit' },
+          { entry: 'orange', type: 'fruit' },
+        ],
+        [
+          { entry: 'pepper', type: 'spice'},
+        ],
+      ],
+    ],
   ])('should chunk correctly with functions that examine the value', (array, func, expected) => {
     expect(reduceToChunks(array, func)).toEqual(expected);
   });
