@@ -38,11 +38,12 @@ reduceToChunks(['One', 'Two', 'Three', 'Four'], val => val.length);
 reduceToChunks(['One', 'Two', 'Three', 'Four'], (val, index) => index / 2);
 // ^ [['One'], ['Three']]
 ```
-When passing a function as the second argument, that function must return an integer. Any integer returned is used to decide which chunk a given item belongs to, which allows for some very powerful grouping logic while still writing nice and concise code. See the [Advanced Examples](#advanced-examples) section for more.
+When passing a function (a "chunkFunc") as the second argument, that function must return an integer. The integer returned is used to decide which chunk a given item belongs to, which allows for some very powerful grouping logic while still writing nice and concise code. See the [Advanced Examples](#advanced-examples) section for more.
 
 ### Notes
-- Any item for which the function returns a decimal number or `undefined` will be filtered out.
-- When passing functions, some indices may be unused and result in undefined array entries, but these entries are removed by default. To retain undefined entries, provide `true` as the third argument when using `reduceToChunks`.
+- Any item for which the chunkFunc returns undefined or a decimal number will be filtered out.
+- When passing functions, some indices at the top-level may be unused and result in undefined array entries; these entries are removed by default.
+- To retain undefined entries, provide `true` as the third argument.
 ```ts
 reduceToChunks(
   ['One', 'Two', 'Three', 'Four'],
@@ -51,7 +52,7 @@ reduceToChunks(
 );
 // ^ [['One'], undefined, ['Two'], undefined, ['Three'], undefined, ['Four']]
 ```
-As seen above, when the given function multiplies each item's index by 2, every odd index is undefined in the resulting array.
+As seen above, when the chunkFunc multiplies each item's index by 2, every odd index is undefined in the resulting array.
 
 ## Advanced Examples
 #### Group numbers by remainder
@@ -80,6 +81,7 @@ reduceToChunks(objects, val => edibleEnum[val.type]);
 - Written in [TypeScript](https://www.typescriptlang.org/).
 - Minimally scoped.
 - No dependencies.
+- Uses generics.
 
 ## Contributing
 Submitted issues and pull requests are welcome.

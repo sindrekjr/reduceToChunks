@@ -22,7 +22,7 @@ const chunkByFunction = <T>(array: T[], func: (item: T, index: number) => number
 
 export default function reduceToChunks<T>(array: T[], chunkSize?: number): Array<T[]>;
 export default function reduceToChunks<T>(array: T[], chunkFunc: (item: T, index: number) => number | undefined, preserveEmptyEntries?: boolean): Array<T[]>;
-export default function reduceToChunks<T>(array: T[], chunkRule: ((item: T, index: number) => number | undefined) | number = 1, preserveEmptyEntries?: boolean): Array<T[]> {
+export default function reduceToChunks<T>(array: T[], chunkRule: ((item: T, index: number) => number | undefined) | number = 1, preserveEmptyEntries: boolean = false): Array<T[]> {
   if (preserveEmptyEntries || typeof chunkRule === 'number') {
     return typeof chunkRule === 'number' ? chunkBySize<T>(array, chunkRule) : chunkByFunction<T>(array, chunkRule);
   }

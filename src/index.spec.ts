@@ -1,6 +1,6 @@
 import reduceToChunks from './index';
 
-describe('reduceToChunks(array: any[], chunkSize: number)', () => {
+describe('reduceToChunks(array: T[], chunkSize: number)', () => {
   it('should not throw', () => expect(() => reduceToChunks([])).not.toThrow());
 
   it.each([
@@ -34,7 +34,7 @@ describe('reduceToChunks(array: any[], chunkSize: number)', () => {
   });
 });
 
-describe('reduceToChunks(array: any[], chunkFunc: IndexResolvableFunction)', () => {
+describe('reduceToChunks(array: T[], chunkFunc: (item: T, index: number) => number | undefined)', () => {
   it.each([
     [
       ['One', 'Two', 'Three', 'Four'],
