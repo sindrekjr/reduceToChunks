@@ -30,7 +30,7 @@ describe('reduceToChunks(array: any[], chunkSize: number)', () => {
       [['One', 'Two', 'Three', 'Four']],
     ],
   ])('should chunk correctly with sizes', (array, size, expected) => {
-    expect(reduceToChunks(array, size)).toEqual(expected);
+    expect(reduceToChunks<string>(array, size)).toEqual(expected);
   });
 });
 
@@ -79,7 +79,7 @@ describe('reduceToChunks(array: any[], chunkFunc: IndexResolvableFunction)', () 
       ],
     ],
   ])('should chunk correctly with functions that examine the value', (array, func, expected) => {
-    expect(reduceToChunks(array, func)).toEqual(expected);
+    expect(reduceToChunks<any>(array, func)).toEqual(expected);
   });
 
   it.each([
@@ -99,7 +99,7 @@ describe('reduceToChunks(array: any[], chunkFunc: IndexResolvableFunction)', () 
       [['One'], ['Two'], ['Three'], ['Four']],
     ],
   ])('should chunk correctly with functions that examine the index', (array, func, expected) => {
-    expect(reduceToChunks(array, func)).toEqual(expected);
+    expect(reduceToChunks<string>(array, func)).toEqual(expected);
   });
 
   it.each([
@@ -119,6 +119,6 @@ describe('reduceToChunks(array: any[], chunkFunc: IndexResolvableFunction)', () 
       [undefined, [1, 11, 101, 91], [32], [3], undefined, [5, 15], [16], [7, 17]]
     ],
   ])('should keep undefined when preserveEmptyEntries is set to true', (array, func, expected) => {
-    expect(reduceToChunks(array, func, true)).toEqual(expected);
+    expect(reduceToChunks<any>(array, func, true)).toEqual(expected);
   });
 });
