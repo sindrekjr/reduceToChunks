@@ -55,7 +55,7 @@ reduceToChunks(
 As seen above, when the chunkFunc multiplies each item's index by 2, every odd index is undefined in the resulting array.
 
 ## Advanced Examples
-#### Group numbers by remainder
+### Group numbers by remainder
 ```ts
 reduceToChunks(
   [1, 3, 5, 11, 7, 32, 15, 101, 16, 17, 91],
@@ -63,12 +63,12 @@ reduceToChunks(
 );
 // ^ [[1, 11, 101, 91], [32], [3], [5, 15], [16], [7, 17]]
 ```
-#### Group and filter by object fields
+### Group and filter by object fields
 ```ts
 const objects = [
   { entry: 'apple', type: 'fruit' },
   { entry: 'orange', type: 'fruit' },
-  { entry: 'pepper', type: 'spice'},
+  { entry: 'pepper', type: 'spice' },
   { entry: 'celery', type: 'vegetable' },
   { entry: 'cabbage', type: 'vegetable' }
 ];
